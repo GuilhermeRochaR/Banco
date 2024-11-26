@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossos Quartos e Suítes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .rooms {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            overflow: hidden;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .card-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .card-price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .reserve-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3cb3a6;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .reserve-button:hover {
+            background-color: #2a8d7e;
+        }
+
+        .arrows {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 24px;
+            color: #3cb3a6;
+            cursor: pointer;
+        }
+
+        .arrows span {
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Nossos Quartos e Suítes</h1>
+    <div class="arrows">
+        <span>&#9664;</span>
+        <div class="rooms">
+            <!-- Suite Standard -->
+            <div class="card">
+                <img src="https://drive.google.com/thumbnail?id=1xIVEsRW9sDgzgMntXBhNuM50PqGZA4cD" alt="Suite Standard">
+                <div class="card-content">
+                    <div class="card-title">Suite Standard</div>
+                    <div class="card-description">A suite standard encontra-se em frente ao belo jardim, um verdadeiro convite ao paraíso</div>
+                    <div class="card-price">A partir de: R$ 250/Noite</div>
+                    <a href="#" class="reserve-button">Reservar</a>
+                </div>
+            </div>
+
+            <!-- Suite Master -->
+            <div class="card">
+                <img src="https://drive.google.com/thumbnail?id=1wvTuY4R9jaD09VkB-hh8PLB3DzWp1Nzb" alt="Suite Master">
+                <div class="card-content">
+                    <div class="card-title">Suite Master</div>
+                    <div class="card-description">A suite master possui vista à nossa piscina e área verde, um deslumbre aos olhos</div>
+                    <div class="card-price">A partir de: R$ 400/Noite</div>
+                    <a href="#" class="reserve-button">Reservar</a>
+                </div>
+            </div>
+        </div>
+        <span>&#9654;</span>
+    </div>
+</div>
+
+</body>
+</html>
