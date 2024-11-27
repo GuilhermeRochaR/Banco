@@ -54,12 +54,15 @@ CREATE TABLE IF NOT EXISTS Reunioes (
     FOREIGN KEY (id_local) REFERENCES Locais(id_local)
 );
 
-CREATE TABLE IF NOT EXISTS Membro_Ministerio (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS Presencas (
+    id_presenca INT AUTO_INCREMENT PRIMARY KEY,
     id_membro INT NOT NULL,
-    id_ministerio INT NOT NULL,
+    id_evento INT,
+    id_reuniao INT,
+    check_in_online BOOLEAN,
     FOREIGN KEY (id_membro) REFERENCES Membros(id_membro),
-    FOREIGN KEY (id_ministerio) REFERENCES Ministerios(id_ministerio)
+    FOREIGN KEY (id_evento) REFERENCES Eventos(id_evento),
+    FOREIGN KEY (id_reuniao) REFERENCES Reunioes(id_reuniao)
 );
 
 DELIMITER //
@@ -106,18 +109,19 @@ VALUES
 ('Reunião de Oração', 'Encontro semanal de oração', 'Reunião de oração', 'Regular', '2024-11-26 19:00:00', '2024-11-26 20:30:00', 1, 1),
 ('Reunião de Planejamento', 'Reunião de planejamento da equipe de eventos', 'Reunião de planejamento', 'Regular', '2024-11-29 09:00:00', '2024-11-29 12:00:00', 2, 2);
 
-INSERT INTO Membro_Ministerio (id_membro, id_ministerio)
+INSERT INTO Presencas (id_membro, id_evento, id_reuniao, check_in_online)
 VALUES
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5),
-(6, 6);
+(1, 1, NULL, false),
+(2, 2, NULL, TRUE),
+(3, 3, NULL, TRUE),
+(4, 3, 1, FALSE),
+(5, 1, NULL, TRUE),
+(6, 2, 2, TRUE),
+(7, 2, 1, TRUE);
 
 SELECT * FROM Membros;
 SELECT * FROM Locais;
 SELECT * FROM Ministerios;
 SELECT * FROM Eventos;
 SELECT * FROM Reunioes;
-SELECT * FROM Membro_Ministerio;
+SELECT * FROM Presencas;
