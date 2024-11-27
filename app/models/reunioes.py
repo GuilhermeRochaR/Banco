@@ -8,6 +8,7 @@ class Reuniao(db.Model):
     id_reuniao = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nome = db.Column(db.String(100), nullable=False)
     descricao = db.Column(db.Text, nullable=True)
+    tipo = db.Column(db.String(100), nullable= False)
     data_inicio = db.Column(db.DateTime, nullable=False)
     data_fim = db.Column(db.DateTime, nullable=True)
     id_ministerio = db.Column(db.Integer, db.ForeignKey('ministerio.id_ministerio'), nullable=True)
