@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, render_template, request, redirect
 from flask_login import login_required
 from models.membros import Membro
 from configs.extensions import db
@@ -6,7 +6,7 @@ from configs.extensions import db
 membros_router = Blueprint("membros_router", __name__, template_folder="templates")
 
 # Rota para listar todos os membros
-@membros_router.get("/membros")
+@membros_router.get("/")
 @login_required
 def get_all_membros():
     membros = Membro.query.all()
