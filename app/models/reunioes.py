@@ -1,18 +1,34 @@
 from configs.extensions import db
 from sqlalchemy.orm import mapped_column, Mapped
-from sqlalchemy import ForeignKey
+from sqlalchemy import ForeignKey, String, Text, DateTime
 
 # Modelo da tabela Reunioes
 class Reuniao(db.Model):
     __tablename__ = 'reunioes'
-    id_reuniao = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    nome = db.Column(db.String(100), nullable=False)
-    descricao = db.Column(db.Text, nullable=True)
-    tipo = db.Column(db.String(100), nullable= False)
-    data_inicio = db.Column(db.DateTime, nullable=False)
-    data_fim = db.Column(db.DateTime, nullable=True)
-    id_ministerio = db.Column(db.Integer, db.ForeignKey('ministerio.id_ministerio'), nullable=True)
-    id_local = db.Column(db.Integer, db.ForeignKey('locais.id_local'), nullable=True)
+    id_reuniao: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    nome: Mapped[str] = mapped_column(String(100), nullable=False)
+    descricao: Mapped[str | None] = mapped_column(Text, nullable=True)
+    tipo: Mapped[str] = mapped_column(String(100), nullable=False)
+    data_inicio: Mapped[DateTime] = mapped_column(nullable=False)
+    data_fim: Mapped[DateTime | None] = mapped_column(nullable=True)
+    id_ministerio: Mapped[int | None] = mapped_column(ForeignKey('ministerios.id_ministerio'), nullable=True)
+    id_local: Mapped[int | None] = mapped_column(ForeignKey('locais.id_local'), nullable=True)
+
     
     ministerio = db.relationship('Ministerio', backref=db.backref('reunioes', lazy=True))
     local = db.relationship('Local', backref=db.backref('reunioes', lazy=True))
+
+    def __init__(self, nome: str, descricao: str, tipo: str, data_inicio: DateTime, data_fim: DateTime | None, id_ministerio: int | None, id_local: int | None):
+        self.nome = nome
+        self.descricao = descricao
+        self.tipo = tipo
+        self.data_inicio = data_inicio
+        self.data_fim = data_fim
+        self.id_ministerio = id_ministerio
+        self.id_local = id_local
+
+    @staticmethod
+    def get_todas_reunioes():
+        reunioes = Reuniao.query.all()
+        for reuniao in reunioes:
+            print(f"ID: {reuniao.id_reuniao}, Nome: {reuniao.nome}, Tipo: {reuniao.tipo}, Data Início: {reuniao.data_inicio}")
