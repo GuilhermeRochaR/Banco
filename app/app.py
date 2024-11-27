@@ -1,41 +1,49 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask
+from configs.extensions import db, login_manager
 
-app = Flask(__name__)
+from models.eventos import Evento
+from models.locais import Local
+from models.membros import Membro
+from models.ministerio import Ministerio
+from models.reunioes import Reuniao
+
+from routes.eventos_routes import eventos_router
+from routes.locais_routes import locais_router
+from routes.membros_routes import membros_router
+from routes.ministerio_routes import ministerios_router
+from routes.reunioes_routes import reunioes_router
+
+from dotenv import load_dotenv
+from datetime import timedelta
+import os
 
 
-# Configuração do Banco de Dados
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:senha123@localhost/seu_banco'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db = SQLAlchemy(app)
+load_dotenv()
 
 
-if __name__ == '__main__':
+def create_app():
+
+    app = Flask(__name__)
+
+    app.register_blueprint(eventos_router)
+    app.register_blueprint(locais_router)
+    app.register_blueprint(membros_router)
+    app.register_blueprint(ministerios_router)
+    app.register_blueprint(reunioes_router)
+
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI")
+    app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY")
+    app.config['REMEMBER_COOKIE_DURATION'] = timedelta(hours= 1)
+    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=1)
+
+    db.init_app(app)
+    login_manager.init_app(app)
+
+
     with app.app_context():
-        db.create_all()  # Cria todas as tabelas no banco de dados
-
-@app.route("/")
-def home():
-    return render_template("index.html")  # Página inicial
-
-@app.route("/about")
-def about():
-    return render_template("about.html")  # Página "Sobre"
-
-@app.route("/api/data", methods=["GET"])
-def get_data():
-    return jsonify({"message": "Bem-vindo à API!", "status": "sucesso"})
-
-@app.route("/api/data", methods=["POST"])
-def post_data():
-    data = request.json
-    return jsonify({"message": "Dados recebidos!", "data": data}), 201
+        db.create_all()
+    return app
 
 
-
-
-
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+app = create_app()
+app.run(debug=True)

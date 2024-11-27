@@ -1,6 +1,7 @@
 from configs.extensions import db
 from sqlalchemy.orm import mapped_column, Mapped
 from sqlalchemy import String, Text, Date
+from datetime import date
 
 # Modelo da tabela Membros
 class Membro(db.Model):
@@ -10,8 +11,8 @@ class Membro(db.Model):
     email: Mapped[str | None] = mapped_column(String(100), unique=True, nullable=True)  # Email único e opcional
     telefone: Mapped[str | None] = mapped_column(String(20), nullable=True)  # Telefone opcional
     endereco: Mapped[str | None] = mapped_column(Text, nullable=True)  # Endereço opcional
-    data_nascimento: Mapped[Date | None] = mapped_column(nullable=True)  # Data de nascimento opcional
-    data_entrada: Mapped[Date | None] = mapped_column(nullable=True)  # Data de entrada opcional
+    data_nascimento: Mapped[date | None] = mapped_column(nullable=True)  # Data de nascimento opcional
+    data_entrada: Mapped[date | None] = mapped_column(nullable=True)  # Data de entrada opcional
 
     def __init__(self, id_membro: int, nome: str, email: str, telefone: str, endereco: str, data_nascimento: Date, data_entrada: Date):
         self.id_membro = id_membro
