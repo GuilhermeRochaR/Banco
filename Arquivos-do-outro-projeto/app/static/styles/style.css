@@ -1,0 +1,141 @@
+:root{
+    --primary-color: #16325B;
+    --text-color: #e9f3f2;
+    --link-color: #7a53df;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    color: var(--text-color);
+}
+
+
+
+body{
+    height: 100vh;
+    background-image: linear-gradient(
+        45deg,
+        var(--primary-color) 10%,
+        black
+    );
+
+}
+
+
+.login-main{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2%;
+}
+
+#CESA-image{
+    width: 12%;
+
+}
+
+.login-form{
+    width: 20%;
+    
+}
+
+
+.box-button button{
+    margin-top: 4%;
+    height: 40px;
+    width: 100% ;
+}
+
+.box-button a{
+    color: var(--link-color);
+}
+
+
+.register-box{
+    margin-top: 5%;
+    text-align: center;
+}
+
+@media(max-width: 1075px){
+    .login-form{
+        width: 215px;
+        height: 352px;
+    }
+    #CESA-image{
+        width: 100px;
+        height: 100px;
+    }
+
+}
+
+h1,p, .Check-Box{
+  color: #fff;
+ 
+
+}
+
+p,h1, .btn-cadastro{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+
+.infoCadastro{
+    background-color: #0b2246;
+    padding: 20px ;
+    margin: 20px;
+    padding-top: 10px;
+    border-radius: 10px;
+    box-shadow: 1px 3px 20px black ;
+
+}
+
+.btn-cadastro{
+    /*  */
+background-color: #0b2246;
+
+
+
+margin: 2px 2px 2px 2px;
+height: 50px ;
+
+border-radius: 10px;
+box-shadow: 1px 3px 20px black ;
+
+
+
+}
+.form-container{
+    max-width: 400px;
+
+}
+
+#text{
+    color: #000; /* cor do texto visível */
+    background-color: #f8d7da; /* cor de fundo do alerta para visibilidade */
+    border-color: #f5c2c7;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.NameForm, .Passw,.PasswAuth,.Email{
+    margin-top:10px; 
+    
+}
+.Email,.PasswAuth,.Passw,.NameForm{
+    box-shadow: 1px 4px 20px #0b3a86  ;
+}
+
+.alert {
+    color: #000 !important; /* cor do texto visível */
+    background-color: #f8d7da !important; /* cor de fundo do alerta para visibilidade */
+    border-color: #f5c2c7 !important;
+    padding: 15px;
+    border-radius: 5px;
+    opacity: 1;
+}
