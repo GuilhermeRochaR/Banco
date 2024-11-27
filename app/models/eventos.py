@@ -14,3 +14,17 @@ class Evento(db.Model):
     id_local: Mapped[int | None] = mapped_column(Integer, ForeignKey('locais.id_local'), nullable=True)
    
     local = db.relationship('Local', backref=db.backref('eventos', lazy=True))
+
+    def __init__(self, nome: str, descricao: str, tipo: str, data_inicio: DateTime, data_fim: DateTime | None, id_local: int | None):
+        self.nome = nome
+        self.descricao = descricao
+        self.tipo = tipo
+        self.data_inicio = data_inicio
+        self.data_fim = data_fim
+        self.id_local = id_local
+
+    @staticmethod
+    def get_todos_eventos():
+        eventos = Evento.query.all()
+        for evento in eventos:
+            print(f"ID: {evento.id_evento}, Nome: {evento.nome}, Tipo: {evento.tipo}, Data Início: {evento.data_inicio}")

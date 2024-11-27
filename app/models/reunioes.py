@@ -17,3 +17,18 @@ class Reuniao(db.Model):
     
     ministerio = db.relationship('Ministerio', backref=db.backref('reunioes', lazy=True))
     local = db.relationship('Local', backref=db.backref('reunioes', lazy=True))
+
+    def __init__(self, nome: str, descricao: str, tipo: str, data_inicio: DateTime, data_fim: DateTime | None, id_ministerio: int | None, id_local: int | None):
+        self.nome = nome
+        self.descricao = descricao
+        self.tipo = tipo
+        self.data_inicio = data_inicio
+        self.data_fim = data_fim
+        self.id_ministerio = id_ministerio
+        self.id_local = id_local
+
+    @staticmethod
+    def get_todas_reunioes():
+        reunioes = Reuniao.query.all()
+        for reuniao in reunioes:
+            print(f"ID: {reuniao.id_reuniao}, Nome: {reuniao.nome}, Tipo: {reuniao.tipo}, Data Início: {reuniao.data_inicio}")
