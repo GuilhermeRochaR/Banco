@@ -18,3 +18,6 @@ def get_data():
 def post_data():
     data = request.json
     return jsonify({"message": "Dados recebidos!", "data": data}), 201
+
+if __name__ == "__main__":
+    app.run(debug=True)
