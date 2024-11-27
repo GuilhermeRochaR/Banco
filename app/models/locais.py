@@ -10,3 +10,15 @@ class Local(db.Model):
     endereco: Mapped[str | None] = mapped_column(Text, nullable=True)  # Pode ser nulo
     capacidade: Mapped[int | None] = mapped_column(nullable=True)  # Pode ser nulo
     descricao: Mapped[str | None] = mapped_column(Text, nullable=True)  # Pode ser nulo
+
+    def __init__(self, nome: str, endereco: str | None, capacidade: int | None, descricao: str | None):
+        self.nome = nome
+        self.endereco = endereco
+        self.capacidade = capacidade
+        self.descricao = descricao
+
+    @staticmethod
+    def get_todos_locais():
+        locais = Local.query.all()
+        for local in locais:
+            print(f"ID: {local.id_local}, Nome: {local.nome}, Capacidade: {local.capacidade}")

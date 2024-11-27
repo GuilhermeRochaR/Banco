@@ -1,0 +1,36 @@
+<!DOCTYPE html>  
+<html lang="pt-br">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Cadastro de Ministérios</title>  
+    <link rel="stylesheet" href="/app/static/styles/ministerio.css">
+</head>  
+<body>  
+    <div class="container" id="ministerioContainer">  
+        <h2>Cadastro de Ministérios</h2>  
+        <form>  
+          <label for="nome">Nome do Ministério</label>  
+          <input type="text" id="nome" name="nome" required>  
+          
+          <label for="descricao">Descrição</label>  
+          <textarea id="descricao" name="descricao" rows="4" required></textarea>  
+          
+          <label for="id_membro">Membro Responsável</label>  
+          <select name="id_membro" id="id_membro" required>  
+            <option value="">Selecione um membro</option>  
+            <!-- Exemplo de opções que devem ser geradas a partir do banco de dados -->  
+            <option value="1">José Vicente</option>  
+            <option value="2">Yan Garrido</option>  
+            <option value="3">Luis Guilherme</option>  
+            <option value="4">Luis Magno</option>  
+            <option value="5">Marcos André</option>  
+            <option value="6">João Vitor</option>  
+            <option value="7">Juan Alcantâra</option>  
+          </select>  
+          
+          <button type="submit">Cadastrar Ministério</button>  
+        </form>  
+    </div>  
+</body>  
+</html>

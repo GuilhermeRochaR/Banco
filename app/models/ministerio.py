@@ -11,3 +11,14 @@ class Ministerio(db.Model):
     id_membro: Mapped[int] = mapped_column(Integer, ForeignKey('membros.id_membro'), nullable=False)
 
     membro = db.relationship('Membro', backref=db.backref('ministerio', lazy=True))
+
+    def __init__(self, nome: str, descricao: str | None, id_membro: int):
+        self.nome = nome
+        self.descricao = descricao
+        self.id_membro = id_membro
+
+    @staticmethod
+    def get_todos_ministerios():
+        ministerios = Ministerio.query.all()
+        for ministerio in ministerios:
+            print(f"ID: {ministerio.id_ministerio}, Nome: {ministerio.nome}")

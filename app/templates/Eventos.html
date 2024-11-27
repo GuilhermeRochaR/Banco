@@ -1,0 +1,41 @@
+<!DOCTYPE html>  
+<html lang="pt-br">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Cadastro de Eventos</title>  
+    <link rel="stylesheet" href="/app/static/styles/eventos.css"> 
+</head>  
+<body>  
+    <div class="container" id="eventosContainer">  
+        <h2>Cadastro de Eventos</h2>  
+        <form>  
+          <label for="nomeEvento">Nome do Evento</label>  
+          <input type="text" id="nomeEvento" name="nomeEvento" required>  
+          
+          <label for="descricaoEvento">Descrição</label>  
+          <textarea id="descricaoEvento" name="descricaoEvento" rows="4" required></textarea>  
+          
+          <label for="dataInicio">Data de Início</label>  
+          <input type="datetime-local" id="dataInicio" name="dataInicio" required>  
+          
+          <label for="dataFim">Data de Fim</label>  
+          <input type="datetime-local" id="dataFim" name="dataFim">  
+          
+          <label for="localEvento">Local</label>  
+          <select name="localEvento" id="localEvento" required>  
+            <option value="">Selecione um local</option>  
+            <!-- Adicione opções de locais aqui -->  
+          </select>  
+          
+          <label for="tipoEvento">Tipo de Evento</label>  
+          <select name="tipoEvento" id="tipoEvento" required>  
+            <option value="">Selecione um tipo</option>  
+            <!-- Adicione opções de tipos de eventos aqui -->  
+          </select>  
+          
+          <button type="submit">Cadastrar Evento</button>  
+        </form>  
+    </div>  
+</body>  
+</html>
