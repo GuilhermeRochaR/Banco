@@ -12,4 +12,5 @@ class Evento(db.Model):
     data_inicio = db.Column(db.DateTime, nullable=False)
     data_fim = db.Column(db.DateTime, nullable=True)
     id_local = db.Column(db.Integer, db.ForeignKey('locais.id_local'), nullable=True)
+   
     local = db.relationship('Local', backref=db.backref('eventos', lazy=True))

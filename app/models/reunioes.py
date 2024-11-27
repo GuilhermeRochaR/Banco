@@ -13,5 +13,6 @@ class Reuniao(db.Model):
     data_fim = db.Column(db.DateTime, nullable=True)
     id_ministerio = db.Column(db.Integer, db.ForeignKey('ministerio.id_ministerio'), nullable=True)
     id_local = db.Column(db.Integer, db.ForeignKey('locais.id_local'), nullable=True)
+    
     ministerio = db.relationship('Ministerio', backref=db.backref('reunioes', lazy=True))
     local = db.relationship('Local', backref=db.backref('reunioes', lazy=True))
