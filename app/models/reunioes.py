@@ -1,6 +1,7 @@
 from configs.extensions import db
 from sqlalchemy.orm import mapped_column, Mapped
 from sqlalchemy import ForeignKey, String, Text, DateTime
+from datetime import datetime
 
 # Modelo da tabela Reunioes
 class Reuniao(db.Model):
@@ -9,9 +10,9 @@ class Reuniao(db.Model):
     nome: Mapped[str] = mapped_column(String(100), nullable=False)
     descricao: Mapped[str | None] = mapped_column(Text, nullable=True)
     tipo: Mapped[str] = mapped_column(String(100), nullable=False)
-    data_inicio: Mapped[DateTime] = mapped_column(nullable=False)
-    data_fim: Mapped[DateTime | None] = mapped_column(nullable=True)
-    id_ministerio: Mapped[int | None] = mapped_column(ForeignKey('ministerios.id_ministerio'), nullable=True)
+    data_inicio: Mapped[datetime] = mapped_column(nullable=False)
+    data_fim: Mapped[datetime | None] = mapped_column(nullable=True)
+    id_ministerio: Mapped[int | None] = mapped_column(ForeignKey('ministerio.id_ministerio'), nullable=True)
     id_local: Mapped[int | None] = mapped_column(ForeignKey('locais.id_local'), nullable=True)
 
     

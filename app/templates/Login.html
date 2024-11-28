@@ -21,6 +21,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 350px;
+            
         }
         .container h2 {
             text-align: center;
@@ -65,16 +66,17 @@
     </style>
 </head>
 <body>
-    <div class = "container" id="LoginContainer">
+    <div class="container" id="LoginContainer">
         <h2>Login</h2>
-        <form>
+        <form action="/login" method="post">
             <label for="email">E-mail</label>
             <input type="email" id="email" name="email" required>
             <label for="senha">Senha</label>
             <input type="password" id="senha" name="senha" required>
             <button type="submit">Entrar</button>
         </form>
-        <div class="switch">Não tem uma conta?<a href="#" onclick="toggleForm">Cadastre-se</a>
+        <div class="switch">
+            Não tem uma conta? <a href="/register">Cadastre-se</a>
         </div>
     </div>
 </body>
