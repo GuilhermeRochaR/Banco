@@ -11,8 +11,8 @@ membros_router = Blueprint("membros_router", __name__, template_folder="template
 @membros_router.get("/")
 @login_required
 def render_index():
-    membro_name = current_user.name
-    return render_template("membros.html", membro_name=membro_name)
+    membro_name = current_user.nome
+    return render_template("MENU.HTML", membro_name=membro_name)
 
 @membros_router.get("/login")
 def index():
@@ -20,7 +20,7 @@ def index():
 
 @membros_router.get("/register")
 def render_register():
-    return render_template("cadastro.html")
+    return render_template("cadastroNOVO.html")
 
 @membros_router.post("/register")
 def register():
@@ -63,7 +63,7 @@ def login():
     membro = Membro.query.filter_by(email=data['usuario']).first()
     if membro is not None and membro.check_password(data['senha']):
         login_user(membro, remember=True)
-        return redirect("/menu")
+        return redirect("/")
 
     flash("Email ou senha inválidos", "Danger!")
     return redirect("/login")
