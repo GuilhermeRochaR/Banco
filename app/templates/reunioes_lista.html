@@ -191,7 +191,7 @@
             <div class="card-header">  
                 <i class="fas fa-users card-icon"></i>  
                 <h2>Reuniões</h2>  
-                <button class="btn" onclick="showCreateModal()">Criar reunião</button>  
+                <button class="btn">Criar reunião</button> <!-- Botão sem funcionalidade -->  
             </div>  
             <div class="table-responsive">  
                 <table>  
@@ -215,12 +215,10 @@
                             <td>Reunião de Planejamento</td>  
                             <td>2024-06-15</td>  
                             <td>  
-                                <button class="btn" onclick="showDetails('Reunião de Planejamentos')">Ver Detalhes</button>  
+                                <button class="btn" onclick="showDetails('Reunião de Planejamento')">Ver Detalhes</button>  
                                 <button class="btn" onclick="participarReuniao('Reunião de Planejamento')">Participar</button>  
                             </td>  
                         </tr>  
-                        <tr>  
-                        <tr>  
                     </tbody>  
                 </table>  
             </div>  
@@ -264,7 +262,6 @@
         function showDetails(id) {  
             const modal = document.getElementById('detailsModal');  
             const modalContent = document.getElementById('modalContent');  
-
 
             modalContent.innerHTML = `  
                 <h3>${id.charAt(0).toUpperCase() + id.slice(1)} Detalhes</h3>  
