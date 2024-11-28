@@ -17,8 +17,5 @@ class Ministerio(db.Model):
         self.descricao = descricao
         self.id_membro = id_membro
 
-    @staticmethod
-    def get_todos_ministerios():
-        ministerios = Ministerio.query.all()
-        for ministerio in ministerios:
-            print(f"ID: {ministerio.id_ministerio}, Nome: {ministerio.nome}")
+  
+    

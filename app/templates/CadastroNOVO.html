@@ -89,7 +89,7 @@
 <body>  
     <div class="container" id="cadastroContainer">  
         <h2>Cadastro</h2>  
-        <form>  
+        <form action="/register" method="post">
             <label for="nome">Nome</label>  
             <input type="text" id="nome" name="nome" required>  
 
@@ -123,7 +123,7 @@
             <button type="submit">Cadastrar-se</button>  
         </form>  
         <div class="switch">  
-            <a href="#">Já tem uma conta? Faça login</a>  
+            <a href="/login">Já tem uma conta? Faça login</a>  
         </div>  
     </div>  
 </body>  
