@@ -8,3 +8,4 @@ BEGIN
     WHERE nome LIKE CONCAT('%', nome_busca, '%');
 END //
 DELIMITER ;
+CALL PesquisarMembrosPorNome('luis');
