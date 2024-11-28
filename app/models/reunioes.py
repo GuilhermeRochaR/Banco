@@ -27,9 +27,3 @@ class Reuniao(db.Model):
         self.data_fim = data_fim
         self.id_ministerio = id_ministerio
         self.id_local = id_local
-
-    @staticmethod
-    def get_todas_reunioes():
-        reunioes = Reuniao.query.all()
-        for reuniao in reunioes:
-            print(f"ID: {reuniao.id_reuniao}, Nome: {reuniao.nome}, Tipo: {reuniao.tipo}, Data Início: {reuniao.data_inicio}")
