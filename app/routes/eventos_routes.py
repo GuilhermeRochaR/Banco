@@ -11,7 +11,7 @@ eventos_router = Blueprint("eventos_router", __name__, template_folder="template
 def listar_eventos():
     # Consulta todos os eventos no banco de dados
     eventos = Evento.query.all()
-    return render_template("lista_eventos.html", eventos=eventos)
+    return render_template("eventosNOVO.html", eventos=eventos)
 
 @eventos_router.get("/eventos")
 @login_required
