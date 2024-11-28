@@ -23,9 +23,3 @@ class Evento(db.Model):
         self.data_inicio = data_inicio
         self.data_fim = data_fim
         self.id_local = id_local
-
-    @staticmethod
-    def get_todos_eventos():
-        eventos = Evento.query.all()
-        for evento in eventos:
-            print(f"ID: {evento.id_evento}, Nome: {evento.nome}, Tipo: {evento.tipo}, Data Início: {evento.data_inicio}")

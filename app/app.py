@@ -31,6 +31,8 @@ def create_app():
     app.register_blueprint(ministerios_router)
     app.register_blueprint(reunioes_router)
 
+    
+    
     app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI")
     app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY")
     app.config['REMEMBER_COOKIE_DURATION'] = timedelta(hours= 1)

@@ -1,103 +1,107 @@
-<!DOCTYPE html>  
-<html lang="pt-br">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Cadastro de Ministérios</title>  
-    <style>  
-        :root {  
-            --primary-color: #1e90ff; /* Azul */  
-            --secondary-color: #0056b3; /* Azul escuro */  
-            --background-color: #f4f7f9; /* Cinza claro */  
-            --text-color: #333; /* Cor do texto */  
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */  
-        }  
+<!DOCTYPE html>
+<html lang="pt-br">
 
-        body {  
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
-            display: flex;  
-            justify-content: center;  
-            align-items: center;  
-            height: 100vh;  
-            margin: 0;  
-            background-color: var(--background-color); background-color: #100549;  
-        }  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Ministérios</title>
+    <style>
+        :root {
+            --primary-color: #1e90ff;
+            /* Azul */
+            --secondary-color: #0056b3;
+            /* Azul escuro */
+            --background-color: #f4f7f9;
+            /* Cinza claro */
+            --text-color: #333;
+            /* Cor do texto */
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Sombra */
+        }
 
-        .container {  
-            background: white;  
-            padding: 20px;  
-            border-radius: 8px;  
-            box-shadow: var(--shadow);  
-            width: 400px;  
-        }  
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: var(--background-color);
+            background-color: #100549;
+        }
 
-        .container h2 {  
-            text-align: center;  
-            margin-bottom: 20px;  
-            color: var(--primary-color);  
-        }  
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            width: 400px;
+        }
 
-        .container form {  
-            display: flex;  
-            flex-direction: column;  
-        }  
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
 
-        .container label {  
-            font-weight: bold;  
-            margin-bottom: 5px;  
-        }  
+        .container form {
+            display: flex;
+            flex-direction: column;
+        }
 
-        .container input,  
-        .container select,  
-        .container textarea {  
-            padding: 10px;  
-            margin-bottom: 15px;  
-            border: 1px solid #ccc;  
-            border-radius: 4px;  
-            font-size: 1rem;  
-        }  
+        .container label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
 
-        .container button {  
-            padding: 10px;  
-            background-color: var(--primary-color);  
-            color: white;  
-            border: none;  
-            border-radius: 4px;  
-            cursor: pointer;  
-            font-size: 1rem;  
-            transition: background-color 0.3s ease;  
-        }  
+        .container input,
+        .container select,
+        .container textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
 
-        .container button:hover {  
-            background-color: var(--secondary-color);  
-        }  
-    </style>  
-</head>  
-<body>  
-    <div class="container" id="ministerioContainer">  
-        <h2>Cadastro de Ministérios</h2>  
-        <form>  
-            <label for="nome">Nome do Ministério</label>  
-            <input type="text" id="nome" name="nome" required>  
+        .container button {
+            padding: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
 
-            <label for="descricao">Descrição</label>  
-            <textarea id="descricao" name="descricao" rows="4" required></textarea>  
+        .container button:hover {
+            background-color: var(--secondary-color);
+        }
+    </style>
+</head>
 
-            <label for="id_membro">Membro Responsável</label>  
-            <select name="id_membro" id="id_membro" required>  
-                <option value="">Selecione um membro</option>  
-                <!-- Exemplo de opções que devem ser geradas a partir do banco de dados -->  
-                <option value="1">José Vicente</option>  
-                <option value="2">Yan Garrido</option>  
-                <option value="3">Luis Guilherme</option>  
-                <option value="4">Luis Magno</option>  
-                <option value="5">Marcos André</option>  
-                <option value="6">João Vitor</option>  
-                <option value="7">Juan Alcantâra</option>  
-            </select>  
+<body>
+    <div class="container" id="ministerioContainer">
+        <h2>Cadastro de Ministérios</h2>
+        <form method="POST" action="/ministerio">
+            <label for="nome">Nome do Ministério</label>
+            <input type="text" id="nome" name="nome" required>
 
-            <button type="submit">Cadastrar Ministério</button>  
-        </form>  
-    </div>  
-</body>  
+            <label for="descricao">Descrição</label>
+            <textarea id="descricao" name="descricao" rows="4" required></textarea>
+
+            <label for="id_membro">Membro Responsável</label>
+            <select name="id_membro" id="id_membro" required>
+                <option value="">Selecione um membro</option>
+                {% for membro in membros %}
+                <option value="{{ membro.id_membro }}">{{ membro.nome }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Cadastrar Ministério</button>
+        </form>
+    </div>
+</body>
+
 </html>

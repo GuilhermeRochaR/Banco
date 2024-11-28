@@ -7,9 +7,9 @@ from flask_login import LoginManager
 from werkzeug.security import generate_password_hash, check_password_hash
 
 # Modelo da tabela Membros
-class Membro(db.Model, UserMixin):
-    __tablename__ = 'membros'
-    id_membro: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+class membro_responsavel(db.Model, UserMixin):
+    __tablename__ = 'membro_responsavel'
+    id_responsavel: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     nome: Mapped[str] = mapped_column(String(100), nullable=False)
     email: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)  # Email único e opcional
     telefone: Mapped[str | None] = mapped_column(String(20), nullable=True)  # Telefone opcional
@@ -35,26 +35,26 @@ class Membro(db.Model, UserMixin):
     
     @classmethod
     def find_user_by_email(cls,email):
-        return Membro.query.filter_by(email = email).first()
+        return membro_responsavel.query.filter_by(email = email).first()
     
     def create_user(self):
         db.session.add(self)
         db.session.commit()
 
     def get_id(self):
-        return str(self.id_membro)
+        return str(self.id_responsavel)
 
 
     def user_to_dict(self):
         return {
-            "id": self.id_membro,
+            "id": self.id_responsavel,
             "email": self.email
         }
     
 
     @login_manager.user_loader
     def load_user(user_id):
-        return Membro.query.get(int(user_id))
+        return membro_responsavel.query.get(int(user_id))
     
     login_manager = LoginManager()
     login_manager.login_view = "membros_router.login"

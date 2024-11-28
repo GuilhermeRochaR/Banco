@@ -2,30 +2,36 @@ from flask import Blueprint, request, render_template
 from flask_login import login_required
 from models.ministerio import Ministerio
 from configs.extensions import db
+from sqlalchemy import text
 
-ministerios_router = Blueprint("ministerios_router", __name__, template_folder="templates")
+
+ministerios_router = Blueprint("ministerio_router", __name__, template_folder="templates")
 
 # Rota para listar todos os ministérios
-@ministerios_router.get("/ministerios")
+@ministerios_router.get("/ministerio")
 @login_required
-def get_all_ministerios():
-    ministerios = Ministerio.query.all()
-    return render_template("ministerios.html", ministerios=ministerios)
+def cadastro_ministerio():
+    membros = db.session.execute(text("SELECT id_membro, nome FROM Membros")).fetchall()
+    print(membros)
+    return render_template('ministerioNOVO.html', membros=membros)
+
 
 # Rota para criar um novo ministério
-@ministerios_router.post("/ministerios")
+@ministerios_router.post("/ministerio")
 @login_required
 def create_ministerio():
-    data = request.json
+    # Usando request.form para pegar os dados do formulário
+    nome = request.form.get("nome")
+    descricao = request.form.get("descricao")
+    id_membro = request.form.get("id_membro")
+    
+    # Criando o novo ministério
     novo_ministerio = Ministerio(
-        nome=data.get("nome"),
-        descricao=data.get("descricao"),
-        id_membro=data.get("id_membro"),
+        nome=nome,
+        descricao=descricao,
+        id_membro=id_membro
     )
+
     db.session.add(novo_ministerio)
     db.session.commit()
-    return {
-        "id": novo_ministerio.id_ministerio,
-        "nome": novo_ministerio.nome,
-        "descricao": novo_ministerio.descricao
-    }
+
