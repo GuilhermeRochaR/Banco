@@ -32,7 +32,6 @@ def register():
     senha = request.form["senha"]
     confirma_senha = request.form["confirmarsenha"]
     datadenascimento = request.form["datadenascimento"]
-    ministerio = request.form["ministerio"]
     data_entrada = datetime.now()
     
     if senha == confirma_senha:
