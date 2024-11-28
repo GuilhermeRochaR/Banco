@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS Membros (
     endereco LONGTEXT,
     data_nascimento DATE,
     data_entrada DATE,
-    senha VARCHAR(255);
+    senha VARCHAR(255),
     nivel_acesso ENUM('Administrador', 'Líder de Ministério', 'Membro Regular') DEFAULT 'Membro Regular'
 );
 
