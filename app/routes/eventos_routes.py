@@ -8,26 +8,34 @@ eventos_router = Blueprint("eventos_router", __name__, template_folder="template
 # Rota para listar todos os eventos
 @eventos_router.get("/eventos")
 @login_required
-def get_all_eventos():
+def listar_eventos():
+    # Consulta todos os eventos no banco de dados
     eventos = Evento.query.all()
-    return render_template("eventos.html", eventos=eventos)
+    return render_template("lista_eventos.html", eventos=eventos)
+
+@eventos_router.get("/eventos")
+@login_required
+def abrir_eventos():
+    return render_template("eventosNOVO.html")
 
 # Rota para criar um novo evento
 @eventos_router.post("/eventos")
 @login_required
-def create_evento():
-    data = request.json
+def create_evento():  
+    nome=request.form.get("nome"),
+    descricao=request.form.get("descricao"),
+    data_inicio=request.form.get("data_inicio"),
+    data_fim=request.form.get("data_fim"),
+    id_local=request.form.get("id_local"),
+
     novo_evento = Evento(
-        nome=data.get("nome"),
-        descricao=data.get("descricao"),
-        data_inicio=data.get("data_inicio"),
-        data_fim=data.get("data_fim"),
-        id_local=data.get("id_local"),
+        nome=nome,
+        descricao=descricao,
+        data_inicio=data_inicio,
+        data_fim=data_fim,
+        id_local=id_local
     )
+    
     db.session.add(novo_evento)
     db.session.commit()
-    return {
-        "id": novo_evento.id_evento,
-        "nome": novo_evento.nome,
-        "descricao": novo_evento.descricao
-    }
+
