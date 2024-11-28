@@ -10,7 +10,7 @@ reunioes_router = Blueprint("reunioes_router", __name__, template_folder="templa
 @login_required
 def get_all_reunioes():
     reunioes = Reuniao.query.all()
-    return render_template("lista_reunioes.html", reunioes=reunioes)
+    return render_template("reunioesNOVO.html", reunioes=reunioes)
 
 # Rota para criar uma nova reunião
 @reunioes_router.post("/reunioes")
