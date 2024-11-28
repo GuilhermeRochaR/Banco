@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, request, redirect, make_response, 
 from models.membros import Membro
 from flask_login import login_required, login_user, logout_user, current_user
 from validation.validation_utils import validate_login_data
+from configs.extensions import login_manager
+from datetime import datetime
 
 membros_router = Blueprint("membros_router", __name__, template_folder="templates")
 
@@ -22,20 +24,21 @@ def render_register():
 
 @membros_router.post("/register")
 def register():
+    print("Formulário recebido!")
     nome = request.form["nome"]
     email = request.form["email"]
     telefone = request.form["telefone"]
-    endereco = request.form["endereço"]
+    endereco = request.form["endereco"]
     senha = request.form["senha"]
     confirma_senha = request.form["confirmarsenha"]
-    datadenascimento = request.form
-    ["datadenascimento"]
+    datadenascimento = request.form["datadenascimento"]
     ministerio = request.form["ministerio"]
+    data_entrada = datetime.now()
     
     if senha == confirma_senha:
         exist_user = Membro.find_user_by_email(email=email)
         if exist_user == None:
-            newUser = Membro(nome, email, senha)
+            newUser = Membro(nome, email, telefone, endereco, datadenascimento, data_entrada, senha)
             newUser.set_password(senha)
             newUser.create_user()
             return make_response(redirect("/login"),302)
@@ -57,10 +60,10 @@ def login():
         flash(error_message, "Danger!")
         return redirect("/login")
 
-    user = Membro.query.filter_by(email=data['usuario']).first()
-    if user is not None and user.check_password(data['senha']):
-        login_user(user, remember=True)
-        return redirect("/")
+    membro = Membro.query.filter_by(email=data['usuario']).first()
+    if membro is not None and membro.check_password(data['senha']):
+        login_user(membro, remember=True)
+        return redirect("/membros/")
 
     flash("Email ou senha inválidos", "Danger!")
     return redirect("/login")
@@ -70,6 +73,7 @@ def login():
 def logout():
     logout_user()
     return redirect("/login")
+
 
 
 
