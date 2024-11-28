@@ -63,7 +63,7 @@ def login():
     membro = Membro.query.filter_by(email=data['usuario']).first()
     if membro is not None and membro.check_password(data['senha']):
         login_user(membro, remember=True)
-        return redirect("/membros/")
+        return redirect("/menu")
 
     flash("Email ou senha inválidos", "Danger!")
     return redirect("/login")
@@ -73,6 +73,10 @@ def login():
 def logout():
     logout_user()
     return redirect("/login")
+
+@membros_router.get("/menu")
+def render_menu():
+    return render_template("MENU.HTML")
 
 
 
