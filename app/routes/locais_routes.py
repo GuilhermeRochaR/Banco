@@ -8,25 +8,32 @@ locais_router = Blueprint("locais_router", __name__, template_folder="templates"
 # Rota para listar todos os locais
 @locais_router.get("/locais")
 @login_required
-def get_all_locais():
+def listar_locais():
+    # Consulta todos os eventos no banco de dados
     locais = Local.query.all()
-    return render_template("locais.html", locais=locais)
+    return render_template("lista_locais.html", locais=locais)
+
+@locais_router.get("/locais")
+@login_required
+def abrir_locais():
+    return render_template("locais.html")
 
 # Rota para criar um novo local
 @locais_router.post("/locais")
 @login_required
 def create_local():
-    data = request.json
+    nome=request.form.get("nome")
+    endereco=request.form.get("endereco")
+    capacidade=request.form.get("capacidade")
+    descricao=request.form.get("descricao")
+
     novo_local = Local(
-        nome=data.get("nome"),
-        endereco=data.get("endereco"),
-        capacidade=data.get("capacidade"),
-        descricao=data.get("descricao"),
+        nome=nome,
+        endereco=endereco,
+        capacidade=capacidade,
+        descricao=descricao,
+        
     )
+    
     db.session.add(novo_local)
     db.session.commit()
-    return {
-        "id": novo_local.id_local,
-        "nome": novo_local.nome,
-        "descricao": novo_local.descricao
-    }
