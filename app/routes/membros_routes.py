@@ -4,7 +4,7 @@ from flask_login import login_required, login_user, logout_user, current_user
 from validation.validation_utils import validate_login_data
 from configs.extensions import login_manager
 from datetime import datetime
-
+from models.ministerio import Ministerio
 membros_router = Blueprint("membros_router", __name__, template_folder="templates")
 
 # Rota para listar todos os membros
@@ -12,7 +12,8 @@ membros_router = Blueprint("membros_router", __name__, template_folder="template
 @login_required
 def render_index():
     membro_name = current_user.nome
-    return render_template("MENU.HTML", membro_name=membro_name)
+    ministerios = Ministerio.query.all()
+    return render_template("MENU.HTML", membro_name=membro_name, ministerios=ministerios)
 
 @membros_router.get("/login")
 def index():

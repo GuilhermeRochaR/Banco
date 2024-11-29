@@ -264,14 +264,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for ministerio in ministerios %}
                         <tr>
-                            <td>Ministério de Louvor</td>
-                            <td>João Silva</td>
+                            <td>{{ ministerio.nome }}</td>
+                            <td>{{ ministerio.lider }}</td>
                             <td>
                                 <button class="btn" onclick="showDetails('louvor')">Ver Detalhes</button>
                             </td>
                         </tr>
-                        <!-- Adicione mais linhas conforme necessário -->
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

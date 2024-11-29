@@ -6,6 +6,8 @@ from flask_login import UserMixin
 from flask_login import LoginManager
 from werkzeug.security import generate_password_hash, check_password_hash
 
+from models.membros_ministerio import MembroMinisterio
+
 # Modelo da tabela Membros
 class Membro(db.Model, UserMixin):
     __tablename__ = 'membros'
@@ -17,6 +19,9 @@ class Membro(db.Model, UserMixin):
     data_nascimento: Mapped[date | None] = mapped_column(nullable=True)  # Data de nascimento opcional
     data_entrada: Mapped[date | None] = mapped_column(nullable=True)  # Data de entrada opcional
     senha: Mapped[str] = mapped_column(String(255), nullable=False)
+    
+    ministerios = db.relationship('Ministerio', secondary='membro_ministerio', back_populates='membros')
+    
 
     def __init__(self,nome: str, email: str, telefone: str, endereco: str, data_nascimento: Date, data_entrada: Date, senha: str):
         self.nome = nome
@@ -52,9 +57,5 @@ class Membro(db.Model, UserMixin):
         }
     
 
-    @login_manager.user_loader
-    def load_user(user_id):
-        return Membro.query.get(int(user_id))
     
-    login_manager = LoginManager()
-    login_manager.login_view = "membros_router.login"
+    

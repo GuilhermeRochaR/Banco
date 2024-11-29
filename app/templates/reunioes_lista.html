@@ -183,7 +183,7 @@
     <nav class="nav-container">
         <div class="nav-links">
             <a href="/"><i class="fas fa-home"></i> Início</a>
-            <a href="/ministerios"><i class="fas fa-church"></i> Ministérios</a>
+            <a href="/ministerio"><i class="fas fa-church"></i> Ministérios</a>
             <a href="/reunioes"><i class="fas fa-users"></i> Reuniões</a>
             <a href="/eventos"><i class="fas fa-calendar-alt"></i> Eventos</a>
         </div>
@@ -213,9 +213,9 @@
                             <td>{{ reuniao.nome }}</td>
                             <td>{{ reuniao.data_inicio }}</td>
                             <td>{{ reuniao.local }}</td>
-
+                            <td>
                             <button class="btn" onclick="showDetails('Reunião de Oração')">Ver Detalhes</button>
-                            <button class="btn" onclick="participarReuniao('Reunião de Oração')">Participar</button>
+                            <button class="btn" onclick="participar_reuniao()">Participar</button>
                             </td>
                         </tr>
                         {% endfor %}
