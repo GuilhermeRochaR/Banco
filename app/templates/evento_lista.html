@@ -197,6 +197,9 @@
                     <thead>  
                         <tr>  
                             <th>Evento</th>  
+                            <th>Descrição</th>
+                            <th>Tipo</th>
+                            <th>Local</th>
                             <th>Data</th>  
                             <th>Ações</th>  
                         </tr>  
@@ -204,7 +207,10 @@
                     <tbody>
                         {% for evento in eventos %}  
                         <tr>  
-                            <td>{{ evento.nome }}</td>  
+                            <td>{{ evento.nome }}</td>
+                            <td>{{ evento.descricao }}</td> 
+                            <td>{{ evento.tipo }}</td>
+                            <td>{{ evento.local.nome}}</td>    
                             <td>{{ evento.data_inicio }}</td>  
                             <td>  
                                 <button class="btn" onclick="showDetails('Culto de Adoração')">Ver Detalhes</button>   
