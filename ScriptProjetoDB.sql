@@ -18,6 +18,7 @@ nome VARCHAR(100) NOT NULL,
 descricao TEXT,
 lider VARCHAR(100)
 );
+
 -- Tabela Intermediária entre Membros e Ministérios
 CREATE TABLE IF NOT EXISTS membro_ministerio (
     id_membro INT NOT NULL,
@@ -43,6 +44,7 @@ CREATE TABLE IF NOT EXISTS eventos (
     data_inicio DATETIME NOT NULL,
     data_fim DATETIME,
     id_local INT,
+    numero_participantes INT,
     FOREIGN KEY (id_local) REFERENCES locais(id_local)
 );
 
@@ -57,4 +59,13 @@ CREATE TABLE IF NOT EXISTS reunioes (
     id_local INT,
     FOREIGN KEY (id_ministerio) REFERENCES ministerio(id_ministerio),
     FOREIGN KEY (id_local) REFERENCES locais(id_local)
+);
+
+CREATE TABLE IF NOT EXISTS log_membros (
+    id_log INT AUTO_INCREMENT PRIMARY KEY,
+    id_membro INT,
+    nome VARCHAR(100),
+    email VARCHAR(100),
+    acao VARCHAR(50), -- INSERT, UPDATE ou DELETE
+    data_alteracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
