@@ -155,7 +155,7 @@
         th,
         td {
             padding: 1rem;
-            text-align: left;
+            text-align: center;
             border-bottom: 1px solid #ddd;
         }
 
@@ -259,7 +259,6 @@
                         <tr>
                             <th>Ministério</th>
                             <th>Líder</th>
-                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -267,9 +266,6 @@
                         <tr>
                             <td>{{ ministerio.nome }}</td>
                             <td>{{ ministerio.lider }}</td>
-                            <td>
-                                <button class="btn" onclick="showDetails('louvor')">Ver Detalhes</button>
-                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
