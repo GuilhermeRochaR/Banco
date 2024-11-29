@@ -1,11 +1,13 @@
 from flask import Flask
 from configs.extensions import db, login_manager
+from flask_login import LoginManager
 
 from models.eventos import Evento
 from models.locais import Local
 from models.membros import Membro
 from models.ministerio import Ministerio
 from models.reunioes import Reuniao
+from models.membros_ministerio import MembroMinisterio
 
 from routes.eventos_routes import eventos_router
 from routes.locais_routes import locais_router
@@ -38,8 +40,15 @@ def create_app():
     app.config['REMEMBER_COOKIE_DURATION'] = timedelta(hours= 1)
     app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=1)
 
-    db.init_app(app)
+    login_manager = LoginManager()
     login_manager.init_app(app)
+    login_manager.login_view = "membros_router.login"
+    
+    @login_manager.user_loader
+    def load_user(user_id):
+        return Membro.query.get(int(user_id))
+    db.init_app(app)
+    
 
 
     with app.app_context():

@@ -4,7 +4,9 @@ from flask_login import login_required, login_user, logout_user, current_user
 from validation.validation_utils import validate_login_data
 from configs.extensions import login_manager
 from datetime import datetime
-
+from models.ministerio import Ministerio
+from models.eventos import Evento
+from models.reunioes import Reuniao
 membros_router = Blueprint("membros_router", __name__, template_folder="templates")
 
 # Rota para listar todos os membros
@@ -12,7 +14,17 @@ membros_router = Blueprint("membros_router", __name__, template_folder="template
 @login_required
 def render_index():
     membro_name = current_user.nome
-    return render_template("MENU.HTML", membro_name=membro_name)
+    ministerios = Ministerio.query.all()
+    eventos = Evento.query.all()
+
+    membro = Membro.query.get(current_user.id_membro)
+    
+    if membro.ministerios:
+        id_ministerio = membro.ministerios[0].id_ministerio
+        reunioes = Reuniao.query.filter_by(id_ministerio=id_ministerio).all()
+    else:
+        reunioes = []  # Caso o membro não tenha ministério associado
+    return render_template("MENU.HTML", membro_name=membro_name, ministerios=ministerios, eventos=eventos, reunioes=reunioes)
 
 @membros_router.get("/login")
 def index():
@@ -32,7 +44,6 @@ def register():
     senha = request.form["senha"]
     confirma_senha = request.form["confirmarsenha"]
     datadenascimento = request.form["datadenascimento"]
-    ministerio = request.form["ministerio"]
     data_entrada = datetime.now()
     
     if senha == confirma_senha:

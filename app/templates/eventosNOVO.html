@@ -76,41 +76,52 @@
 <body>  
     <div class="container" id="eventosContainer">  
         <h2>Cadastro de Eventos</h2>  
-        <form>  
-            <label for="nomeEvento">Nome do Evento</label>  
-            <input type="text" id="nomeEvento" name="nomeEvento" required>  
+        <form method="POST" action="/eventos/cadastro">
+            <label for="nomeEvento">Nome do Evento</label>
+            <input type="text" id="nomeEvento" name="nome" required>
+        
+            <label for="descricaoEvento">Descrição</label>
+            <textarea id="descricaoEvento" name="descricao" rows="4" required></textarea>
+        
+            <label for="dataInicio">Data de Início</label>
+            <input type="datetime-local" id="dataInicio" name="data_inicio" required>
+        
+            <label for="dataFim">Data de Fim</label>
+            <input type="datetime-local" id="dataFim" name="data_fim">
 
-            <label for="descricaoEvento">Descrição</label>  
-            <textarea id="descricaoEvento" name="descricaoEvento" rows="4" required></textarea>  
-
-            <label for="dataInicio">Data de Início</label>  
-            <input type="datetime-local" id="dataInicio" name="dataInicio" required>  
-
-            <label for="dataFim">Data de Fim</label>  
-            <input type="datetime-local" id="dataFim" name="dataFim">  
-
-            <label for="localEvento">Local</label>  
-            <select name="localEvento" id="localEvento" required>  
-                <option value="">Selecione um local</option>  
-            </select>  
-
-            <label for="tipoEvento">Tipo de Evento</label>  
-            <select name="tipoEvento" id="tipoEvento" required>  
-                <option value="">Selecione um tipo</option>  
-            </select>  
-
-            <button type="submit">Cadastrar Evento</button>  
+            <label for="numero_participantes">Vagas</label>
+            <input type="int" id="numero_participantes" name="numero_participantes">
+        
+            <label for="localEvento">Local</label>
+            <select name="id_local" id="localEvento" required>
+                <option value="">Selecione um local</option>
+                <option value="1">Igreja Central</option>
+                <option value="2">Igreja Filial</option>
+                <option value="3">Auditório</option>
+            </select>
+        
+            <label for="tipoEvento">Tipo de Evento</label>
+            <select name="tipo" id="tipoEvento" required>
+                <option value="">Selecione um tipo</option>
+                <option value="1">Cantata</option>
+                <option value="2">Passeio</option>
+                <option value="3">Visita</option>
+                <option value="4">Outro</option>
+            </select>
+        
+            <button type="submit">Cadastrar Evento</button>
         </form>  
     </div>  
 
     <script>  
+        /*
         // Array de opções de locais  
         const locais = [  
             { id: 1, nome: 'Igreja Central' },  
             { id: 2, nome: 'Igreja Filial' },  
             { id: 3, nome: 'Auditório' },  
             // Adicione mais opções de locais conforme necessário  
-        ];  
+        ];
 
         // Array de opções de tipos de eventos  
         const tiposEventos = [  
@@ -118,7 +129,8 @@
             { id: 2, nome: 'Seminário de Liderança' },  
             { id: 3, nome: 'Palestra sobre Família' },  
             // Adicione mais opções de tipos de eventos conforme necessário  
-        ];  
+        ];
+        */
 
         // Função para popular as opções de local  
         function populateLocais() {  
