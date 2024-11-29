@@ -177,10 +177,10 @@
 
     <nav class="nav-container">  
         <div class="nav-links">  
-            <a href="#"><i class="fas fa-home"></i> Início</a>  
-            <a href="#ministerios"><i class="fas fa-church"></i> Ministérios</a>  
-            <a href="#reunioes"><i class="fas fa-users"></i> Reuniões</a>  
-            <a href="#eventos"><i class="fas fa-calendar-alt"></i> Eventos</a>  
+            <a href="/"><i class="fas fa-home"></i> Início</a>  
+            <a href="/ministerios"><i class="fas fa-church"></i> Ministérios</a>  
+            <a href="/reunioes"><i class="fas fa-users"></i> Reuniões</a>  
+            <a href="/eventos"><i class="fas fa-calendar-alt"></i> Eventos</a>  
         </div>  
     </nav>  
 
@@ -190,7 +190,7 @@
             <div class="card-header">  
                 <i class="fas fa-calendar-alt card-icon"></i>  
                 <h2>Eventos</h2>  
-                <button class="btn">Criar Evento</button>  
+                <a class="btn" href="/eventos/cadastro">Criar Evento</a>  
             </div>  
             <div class="table-responsive">  
                 <table>  
@@ -201,32 +201,16 @@
                             <th>Ações</th>  
                         </tr>  
                     </thead>  
-                    <tbody>  
+                    <tbody>
+                        {% for evento in eventos %}  
                         <tr>  
-                            <td>Culto de Adoração</td>  
-                            <td>2024-06-24</td>  
+                            <td>{{ evento.nome }}</td>  
+                            <td>{{ evento.data_inicio }}</td>  
                             <td>  
-                                <button class="btn" onclick="showDetails('Culto de Adoração')">Ver Detalhes</button>  
-                                <button class="btn" onclick="inscreverEvento('Culto de Adoração')">Inscrever-se</button>  
+                                <button class="btn" onclick="showDetails('Culto de Adoração')">Ver Detalhes</button>   
                             </td>  
                         </tr>  
-                        <tr>  
-                            <td>Seminário de Liderança</td>  
-                            <td>2024-09-10</td>  
-                            <td>  
-                                <button class="btn" onclick="showDetails('Seminário de Liderança')">Ver Detalhes</button>  
-                                <button class="btn" onclick="inscreverEvento('Seminário de Liderança')">Inscrever-se</button>  
-                            </td>  
-                        </tr>  
-                        <tr>  
-                            <td>Palestra sobre Família</td>  
-                            <td>2024-11-15</td>  
-                            <td>  
-                                <button class="btn" onclick="showDetails('Palestra sobre Família')">Ver Detalhes</button>  
-                                <button class="btn" onclick="inscreverEvento('Palestra sobre Família')">Inscrever-se</button>  
-                            </td>  
-                        </tr>  
-                        <tr>  
+                        {% endfor %}    
                     </tbody>  
                 </table>  
             </div>  

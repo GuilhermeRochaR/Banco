@@ -10,21 +10,18 @@ eventos_router = Blueprint("eventos_router", __name__, template_folder="template
 @eventos_router.get("/eventos")
 @login_required
 def listar_eventos():
-    # Consulta todos os eventos no banco de dados
-    eventos = Evento.query.all()
+    # Obtendo ministérios do banco de dados
+    eventos = Evento.query.all() 
+    
+    # Renderizando o template correto
+    return render_template("evento_lista.html", eventos=eventos)
 
-    # Locais e tipos de eventos são usados em outro contexto, mas podem ser passados também
-    locais = [
-        {"id_local": 1, "nome": "Igreja Central"},
-        {"id_local": 2, "nome": "Igreja Filial"},
-        {"id_local": 3, "nome": "Auditório"},
-    ]
-    tiposEventos = ["Culto de Adoração", "Seminário de Liderança", "Palestra sobre Família"]
+@eventos_router.get("/eventos/cadastro")
+@login_required
+def entrar_cadastro():
+    return render_template('eventosNOVO.html')
 
-    return render_template("eventosNOVO.html", eventos=eventos, locais=locais, tiposEventos=tiposEventos)
-
-
-@eventos_router.post("/eventos")
+@eventos_router.post("/eventos/cadastro")
 @login_required
 def cadastrar_evento():
     try:
@@ -50,7 +47,7 @@ def cadastrar_evento():
         db.session.add(novo_evento)
         db.session.commit()
 
-        return "Evento cadastrado com sucesso!", 201  # Sucesso
+        return redirect(url_for('eventos_router.listar_eventos'))
     except Exception as e:
         db.session.rollback()  # Reverte caso haja erro
         return f"Erro ao cadastrar evento: {str(e)}", 400
