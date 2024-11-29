@@ -212,10 +212,9 @@
                         <tr>
                             <td>{{ reuniao.nome }}</td>
                             <td>{{ reuniao.data_inicio }}</td>
-                            <td>{{ reuniao.local }}</td>
+                            <td>{{ reuniao.local.nome }}</td>
                             <td>
                             <button class="btn" onclick="showDetails('Reunião de Oração')">Ver Detalhes</button>
-                            <button class="btn" onclick="participar_reuniao()">Participar</button>
                             </td>
                         </tr>
                         {% endfor %}

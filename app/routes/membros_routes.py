@@ -5,6 +5,8 @@ from validation.validation_utils import validate_login_data
 from configs.extensions import login_manager
 from datetime import datetime
 from models.ministerio import Ministerio
+from models.eventos import Evento
+from models.reunioes import Reuniao
 membros_router = Blueprint("membros_router", __name__, template_folder="templates")
 
 # Rota para listar todos os membros
@@ -13,7 +15,16 @@ membros_router = Blueprint("membros_router", __name__, template_folder="template
 def render_index():
     membro_name = current_user.nome
     ministerios = Ministerio.query.all()
-    return render_template("MENU.HTML", membro_name=membro_name, ministerios=ministerios)
+    eventos = Evento.query.all()
+
+    membro = Membro.query.get(current_user.id_membro)
+    
+    if membro.ministerios:
+        id_ministerio = membro.ministerios[0].id_ministerio
+        reunioes = Reuniao.query.filter_by(id_ministerio=id_ministerio).all()
+    else:
+        reunioes = []  # Caso o membro não tenha ministério associado
+    return render_template("MENU.HTML", membro_name=membro_name, ministerios=ministerios, eventos=eventos, reunioes=reunioes)
 
 @membros_router.get("/login")
 def index():

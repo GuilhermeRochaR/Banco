@@ -283,54 +283,25 @@
                 <i class="fas fa-users card-icon"></i>
                 <h2>Reuniões</h2>
             </div>
-            <form class="form-group">
-                <label for="reuniao-data">Data da Reunião</label>
-                <input type="date" id="reuniao-data" required>
-                <label for="reuniao-tipo">Tipo de Reunião</label>
-                <select id="reuniao-tipo" required>
-                    <option value="">Selecione o tipo</option>
-                    <option value="administrativa">Administrativa</option>
-                    <option value="oracao">Oração</option>
-                    <option value="planejamento">Planejamento</option>
-                </select>
-                <button class="btn" type="submit">Agendar Reunião</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Reunião</th>
+                        <th>Data</th>
+                        <th>Local</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reuniao in reunioes %}
+                    <tr>
+                        <td>{{ reuniao.nome }}</td>
+                        <td>{{ reuniao.data_inicio }}</td>
+                        <td>{{ reuniao.local.nome }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
             </form>
-        </div>
-
-        <!-- Locais -->
-        <div class="card" id="locais">
-            <div class="card-header">
-                <i class="fas fa-map-marker-alt card-icon"></i>
-                <h2>Locais</h2>
-            </div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nome do Local</th>
-                            <th>Endereço</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Templo Principal</td>
-                            <td>Rua Principal, 123</td>
-                            <td>
-                                <button class="btn" onclick="showDetails('templo')">Ver Detalhes</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Auditório da Juventude</td>
-                            <td>Av. da Paz, 456</td>
-                            <td>
-                                <button class="btn" onclick="showDetails('auditorio')">Ver Detalhes</button>
-                            </td>
-                        </tr>
-                        <!-- Adicione mais locais conforme necessário -->
-                    </tbody>
-                </table>
-            </div>
         </div>
 
         <!-- Eventos -->
@@ -349,12 +320,13 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for evento in eventos %}
                         <tr>
-                            <td>Culto de Adoração</td>
-                            <td>Domingo, 10:00</td>
-                            <td>Templo Principal</td>
+                            <td>{{ evento.nome }}</td>
+                            <td>{{ evento.data_inicio }}</td>
+                            <td>{{ evento.local.nome }}</td>
                         </tr>
-                        <!-- Adicione mais eventos conforme necessário -->
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

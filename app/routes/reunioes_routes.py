@@ -19,7 +19,7 @@ def get_all_reunioes():
         # Aqui você acessa o primeiro ministério, mas você pode ajustar dependendo da sua lógica
         id_ministerio = membro.ministerios[0].id_ministerio
         # Filtra as reuniões pelo ministério do membro
-        reunioes = Reuniao.query.filter_by(id_ministerio=id_ministerio).all()
+        reunioes = Reuniao.query.filter_by(id_ministerio=id_ministerio).join(Local).all()
     else:
         reunioes = []  # Caso o membro não tenha ministério associado
 
