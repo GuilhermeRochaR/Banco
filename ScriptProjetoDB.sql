@@ -10,8 +10,10 @@ CREATE TABLE IF NOT EXISTS Membros (
     endereco LONGTEXT,
     data_nascimento DATE,
     data_entrada DATE,
-    senha VARCHAR(255);
+    senha VARCHAR(255),
+    id_ministerio INT,
     nivel_acesso ENUM('Administrador', 'Líder de Ministério', 'Membro Regular') DEFAULT 'Membro Regular'
+    FOREIGN KEY (id_ministerio) REFERENCES ministerio(id_ministerio)
 );
 
 
@@ -25,16 +27,13 @@ data_nascimento DATE,
 data_entrada DATE,
 senha VARCHAR(255)
 );
+
 CREATE TABLE IF NOT EXISTS Ministerio (
 id_ministerio INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 nome VARCHAR(100),
 descricao TEXT,
-id_membro INT NOT NULL,
-id_responsavel INT NOT NULL,
-FOREIGN KEY (id_membro) REFERENCES Membros(id_membro),
-FOREIGN KEY (id_responsavel) REFERENCES membro_responsavel(id_responsavel)
+lider VARCHAR(100),
 );
-
 
 CREATE TABLE IF NOT EXISTS Locais (
     id_local INT AUTO_INCREMENT PRIMARY KEY,
