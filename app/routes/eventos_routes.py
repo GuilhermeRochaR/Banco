@@ -32,15 +32,17 @@ def cadastrar_evento():
         data_fim = request.form.get("data_fim")
         id_local = request.form.get("id_local")
         tipo = request.form.get("tipo")
+        numero_participantes = request.form.get("numero_participantes")
 
         # Cria o objeto Evento
         novo_evento = Evento(
-            nome=nome,
-            descricao=descricao,
-            tipo=tipo,
-            data_inicio=data_inicio,
-            data_fim=data_fim,
-            id_local=id_local
+            nome = nome,
+            descricao = descricao,
+            tipo = tipo,
+            data_inicio =data_inicio,
+            data_fim = data_fim,
+            id_local = id_local,
+            numero_participantes = numero_participantes
         )
 
         # Adiciona e confirma a transação no banco de dados

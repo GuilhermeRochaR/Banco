@@ -202,7 +202,8 @@
                             <th>Descrição</th>
                             <th>Tipo</th>
                             <th>Local</th>
-                            <th>Data</th>  
+                            <th>Data</th>
+                            <th>Vagas</th>  
                             <th>Ações</th>  
                         </tr>  
                     </thead>  
@@ -213,7 +214,8 @@
                             <td>{{ evento.descricao }}</td> 
                             <td>{{ evento.tipo }}</td>
                             <td>{{ evento.local.nome}}</td>    
-                            <td>{{ evento.data_inicio }}</td>  
+                            <td>{{ evento.data_inicio }}</td>
+                            <td>{{ evento.numero_participantes }}</td>   
                             <td>  
                                 <button class="btn" onclick="showDetails('Culto de Adoração')">Ver Detalhes</button>   
                             </td>  
