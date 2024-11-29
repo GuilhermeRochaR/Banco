@@ -1,9 +1,10 @@
 from flask import Blueprint, request, render_template, redirect, url_for
-from flask_login import login_required
+from flask_login import login_required, current_user
 from models.reunioes import Reuniao
 from configs.extensions import db
 from models.ministerio import Ministerio
 from models.locais import Local 
+from models.membros import Membro
 
 reunioes_router = Blueprint("reunioes_router", __name__, template_folder="templates")
 
@@ -11,10 +12,19 @@ reunioes_router = Blueprint("reunioes_router", __name__, template_folder="templa
 @reunioes_router.get("/reunioes")
 @login_required
 def get_all_reunioes():
-    reunioes = Reuniao.query.all()
+    membro = Membro.query.get(current_user.id_membro)
+    
+    # Verifica se o membro tem ministérios associados
+    if membro.ministerios:
+        # Aqui você acessa o primeiro ministério, mas você pode ajustar dependendo da sua lógica
+        id_ministerio = membro.ministerios[0].id_ministerio
+        # Filtra as reuniões pelo ministério do membro
+        reunioes = Reuniao.query.filter_by(id_ministerio=id_ministerio).all()
+    else:
+        reunioes = []  # Caso o membro não tenha ministério associado
+
     return render_template("reunioes_lista.html", reunioes=reunioes)
 
-# Rota para criar uma nova reunião
 @reunioes_router.get("/reunioes/cadastro")
 @login_required
 def entrar_cadastro():
